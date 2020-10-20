@@ -15,7 +15,7 @@ Feature: Navigate to pages
       And the user navigates to Marketing to Campaigns page
       Then the user should land the Campaigns page
 
-  @Calendars
+  @db
   Scenario: Navigates to Activities Calendar Events
     Given the user is on the login page
     When the user enters the sales manager information

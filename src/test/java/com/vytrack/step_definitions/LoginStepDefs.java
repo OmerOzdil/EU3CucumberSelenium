@@ -1,5 +1,6 @@
 package com.vytrack.step_definitions;
 
+import com.vytrack.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,6 +10,7 @@ public class LoginStepDefs {
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
         System.out.println("A new browser is opened");
+        Driver.get();
     }
 
     @When("the user enters driver information")

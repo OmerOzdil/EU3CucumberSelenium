@@ -1,26 +1,39 @@
 package com.vytrack.step_definitions;
 
+
+import com.vytrack.pages.LoginPage;
+import com.vytrack.utilities.BrowserUtils;
+import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class LoginStepDefs {
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
-        System.out.println("A new browser is opened");
-        Driver.get();
+        String url = ConfigurationReader.get("url");
+        //WebDriver driver = Driver.get();
+        Driver.get().get(url);
     }
 
     @When("the user enters driver information")
     public void the_user_enters_driver_information() {
-        System.out.println("Driver information is put as a credential");
+        String username = ConfigurationReader.get("driver_username");
+        String password = ConfigurationReader.get("driver_password");
+
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(username,password);
     }
 
     @Then("the user should be able to login")
     public void the_user_should_be_able_to_login() {
-        System.out.println("Verify that I am on the home page");
+
+        BrowserUtils.waitFor(3);
+        String actualTitle = Driver.get().getTitle();
+        Assert.assertEquals("Dashboard",actualTitle);
     }
 
     @When("the user enters the sales manager information")

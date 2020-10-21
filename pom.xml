@@ -45,7 +45,7 @@
 
     </dependencies>
 
-    <!-- this first plugin executing CukesRunner -->
+    <!-- this first plugin executing CukesRunner(run through maven) -->
     <build>
         <plugins>
             <plugin>

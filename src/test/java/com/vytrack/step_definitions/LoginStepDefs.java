@@ -38,12 +38,28 @@ public class LoginStepDefs {
 
     @When("the user enters the sales manager information")
     public void the_user_enters_the_sales_manager_information() {
-        System.out.println("Sales manager information is put as a credential");
+        String username = ConfigurationReader.get("sales_manager_username");
+        String password = ConfigurationReader.get("sales_manager_password");
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(username,password);
     }
 
     @When("the user enters the store manager information")
     public void the_user_enters_the_store_manager_information() {
-        System.out.println("Store manager information is put as a credential");
+        String username = ConfigurationReader.get("store_manager_username");
+        String password = ConfigurationReader.get("store_manager_password");
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(username,password);
+    }
+    @When("the user logs in using {string} and {string}")
+    public void the_user_logs_in_using_and(String username, String password) {
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(username,password);
+
+    }
+    @Then("the title contains {string}")
+    public void the_title_contains(String expectedTitle) {
+        Assert.assertTrue(Driver.get().getTitle().contains(expectedTitle));
     }
 
 }

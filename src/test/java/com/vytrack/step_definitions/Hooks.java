@@ -3,6 +3,9 @@ package com.vytrack.step_definitions;
 import com.vytrack.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
     // this comes from Cucumber.java
@@ -11,7 +14,14 @@ public class Hooks {
         System.out.println("\tthis is coming from BEFORE");
     }
     @After
-    public void tearDown(){
+    public void tearDown(Scenario scenario){
+
+        if(scenario.isFailed()){
+
+            final byte[] screenshot = ((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES);
+            // attache
+            scenario.attach(screenshot,"image/png","screenshot");
+        }
         System.out.println("\tthis is coming from After");
         Driver.closeDriver();
     }

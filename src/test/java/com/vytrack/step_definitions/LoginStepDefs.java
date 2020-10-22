@@ -66,6 +66,9 @@ public class LoginStepDefs {
 
     @Given("the user logged in as {string}")
     public void the_user_logged_in_as(String usertype) {
+        String url = ConfigurationReader.get("url");
+        //WebDriver driver = Driver.get();
+        Driver.get().get(url);
         String username="";
         String password="";
         switch(usertype){

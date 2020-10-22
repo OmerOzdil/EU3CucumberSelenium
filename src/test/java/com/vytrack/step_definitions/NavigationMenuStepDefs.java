@@ -1,5 +1,8 @@
 package com.vytrack.step_definitions;
 
+import com.vytrack.pages.ContactsPage;
+import com.vytrack.pages.DashboardPage;
+import com.vytrack.utilities.BrowserUtils;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -50,6 +53,19 @@ public class NavigationMenuStepDefs {
         Assert.assertEquals(expectedUrl,actualUrl);
         System.out.println("PASSED");
 
+    }
+    @When("the user navigates to {string} {string}")
+    public void the_user_navigates_to(String tab, String module) {
+        new DashboardPage().navigateToModule(tab,module);
+    }
+    @Then("the default page number {int}")
+    public void the_default_page_number(Integer expectedPageNum) {
+        ContactsPage contactsPage = new ContactsPage();
+
+        BrowserUtils.waitFor(3);
+
+        Integer actualNumber = Integer.parseInt(contactsPage.pageNumber.getAttribute("value"));
+        Assert.assertEquals(expectedPageNum,actualNumber);
 
     }
 

@@ -45,7 +45,8 @@
 
     </dependencies>
 
-    <!-- this first plugin executing CukesRunner(run through maven) -->
+    <!-- this first plugin is used to trigger executing CukesRunner(run through maven)
+     then the created file is used to create a report by using the plugin below-->
     <build>
         <plugins>
             <plugin>

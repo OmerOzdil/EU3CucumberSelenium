@@ -59,7 +59,37 @@ public class LoginStepDefs {
     }
     @Then("the title contains {string}")
     public void the_title_contains(String expectedTitle) {
+        System.out.println("expectedTitle = " + expectedTitle);
+
         Assert.assertTrue(Driver.get().getTitle().contains(expectedTitle));
+    }
+
+    @Given("the user logged in as {string}")
+    public void the_user_logged_in_as(String usertype) {
+        String username="";
+        String password="";
+        switch(usertype){
+            case "driver":
+                username=ConfigurationReader.get("driver_username");
+                password=ConfigurationReader.get("driver_password");
+                break;
+            case"storemanager":
+                username=ConfigurationReader.get("store_manager_username");
+                password=ConfigurationReader.get("store_manager_password");
+                break;
+            case "salesmanager":
+                username=ConfigurationReader.get("sales_manager_username");
+                password=ConfigurationReader.get("sales_manager_password");
+                break;
+            default:
+                System.out.println("invalid usertype");
+                break;
+        }
+        System.out.println("username = " + username);
+        System.out.println("password = " + password);
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(username,password);
+
     }
 
 }

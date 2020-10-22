@@ -17,3 +17,13 @@ Feature: Users should be able to login
     When the user enters the store manager information
     Then the user should be able to login
 
+       #homework
+  @wip
+  Scenario: Login Dynamically
+    Given the user is on the login page
+    When the user logged in as "salesmanager"
+    And the user should be able to login
+    Then the title contains "Dashboard"
+    #driver,storemanager,salesmanager
+   #you will have one step definition and it will handle differnet usertypes
+

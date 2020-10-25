@@ -5,15 +5,20 @@ import com.vytrack.pages.DashboardPage;
 import com.vytrack.utilities.BrowserUtils;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 
 //import static org.junit.Assert.*;
 
+
+
 public class NavigationMenuStepDefs {
+
 
     @When("the user navigates to Fleet and vehicles page")
     public void the_user_navigates_to_Fleet_and_vehicles_page() {
         System.out.println("The user navigates to Fleet --> Vehicles");
+
     }
 
 
@@ -56,6 +61,7 @@ public class NavigationMenuStepDefs {
     }
     @When("the user navigates to {string} {string}")
     public void the_user_navigates_to(String tab, String module) {
+
         new DashboardPage().navigateToModule(tab,module);
     }
     @Then("the default page number {int}")

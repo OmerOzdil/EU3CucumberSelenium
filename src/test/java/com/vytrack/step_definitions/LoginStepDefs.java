@@ -58,9 +58,11 @@ public class LoginStepDefs {
 
     }
     @Then("the title contains {string}")
-    public void the_title_contains(String expectedTitle) {
+    public void the_title_contains(String expectedTitle) throws InterruptedException {
         System.out.println("expectedTitle = " + expectedTitle);
 
+        Thread.sleep(2000);
+        System.out.println("actualTitle = "+Driver.get().getTitle());
         Assert.assertTrue(Driver.get().getTitle().contains(expectedTitle));
     }
 
@@ -71,7 +73,7 @@ public class LoginStepDefs {
         Driver.get().get(url);
         String username="";
         String password="";
-        switch(usertype){
+        switch(usertype.toLowerCase()){
             case "driver":
                 username=ConfigurationReader.get("driver_username");
                 password=ConfigurationReader.get("driver_password");

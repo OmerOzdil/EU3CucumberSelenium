@@ -24,3 +24,18 @@ Feature: Contacts Page
       | firstname | Brenden     |
       | lastname  | Schneider   |
     Then the user should be able to login
+
+  @wip
+  Scenario Outline: login as a given user <userType>
+    Given the user is on the login page
+    When the user logs in using following credentials
+      | username  | <userType>  |
+      | password  | UserUser123 |
+      | firstname | <firstName> |
+      | lastname  | <lastName>  |
+    Then the user should be able to login
+
+    Examples:
+      | userType       | firstName | lastName  |
+      | user10         | Brenden   | Schneider |
+      | storemanager85 | Stephan   | Haley     |

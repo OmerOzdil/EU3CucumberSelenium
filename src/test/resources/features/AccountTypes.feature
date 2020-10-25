@@ -28,7 +28,6 @@ Feature: Account Types
       | salesmanager | Customers  | Contacts        | Contacts - Customers         |
 
 
-  @wip
   Scenario Outline: Login with different accounts
     Given the user logged in as "<userType>"
     When the user navigates to "<tab>" "<module>"

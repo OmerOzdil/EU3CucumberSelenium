@@ -10,7 +10,9 @@ import org.junit.runner.RunWith;
         // this line is used to create a json file under target folder and by cucumber to create a report.
         plugin = {"json:target/cucumber.json",
                 //this line is for simple html report
-        "html:target/default-html-report"},
+        "html:target/default-html-report",
+                "rerun:target/rerun.txt"
+        },
         // informs feature files are here.(Normally first look at under runners)
         features = "src/test/resources/features",
         glue = "com/vytrack/step_definitions",

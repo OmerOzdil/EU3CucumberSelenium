@@ -37,5 +37,5 @@ Feature: Contacts Page
 
     Examples:
       | userType       | firstName | lastName  |
-      | user10         | Brenden   | Schneider |
+      | user101         | Brenden   | Schneider |
       | storemanager85 | Stephan   | Haley     |

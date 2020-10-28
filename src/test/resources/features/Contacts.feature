@@ -25,7 +25,7 @@ Feature: Contacts Page
       | lastname  | Schneider   |
     Then the user should be able to login
 
-  @wip
+  @
   Scenario Outline: login as a given user <userType>
     Given the user is on the login page
     When the user logs in using following credentials

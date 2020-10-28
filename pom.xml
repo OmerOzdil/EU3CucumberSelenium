@@ -54,12 +54,15 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
+                    <!-- This two lines for parallel testing -->
+                    <parallel>methods</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                    <!--  This two lines for parallel testing  -->
                     <testFailureIgnore>true</testFailureIgnore>
                     <runOrder>Alphabetical</runOrder>
                     <includes>
                         <!-- this stars looks for CukesRunner CLASS anywhere -->
                         <include>**/*CukesRunner.java</include>
-                        <include>**/*FailedTestRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>

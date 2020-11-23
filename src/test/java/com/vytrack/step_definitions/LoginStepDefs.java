@@ -71,6 +71,7 @@ public class LoginStepDefs {
         String url = ConfigurationReader.get("url");
         //WebDriver driver = Driver.get();
         Driver.get().get(url);
+        Driver.get().manage().window().maximize();
         String username="";
         String password="";
         switch(usertype.toLowerCase()){

@@ -25,7 +25,6 @@ Feature: Contacts Page
       | lastname  | Schneider   |
     Then the user should be able to login
 
-  @wip
   Scenario Outline: login as a given user <userType>
     Given the user is on the login page
     When the user logs in using following credentials
@@ -39,3 +38,11 @@ Feature: Contacts Page
       | userType       | firstName | lastName  |
       | user101         | Brenden   | Schneider |
       | storemanager85 | Stephan   | Haley     |
+
+    @wip
+    Scenario: Contacts test with email
+      Given  the user logged in as "salesmanager"
+      And  the user navigates to "Customers" "Contacts"
+      When the user clicks the "mbrackstone9@example.com" from contacts
+      Then the information should be same with database
+

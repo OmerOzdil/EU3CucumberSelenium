@@ -78,9 +78,6 @@ public class ContactsStepDefs {
         System.out.println("actualEmail = " + actualEmail);
         System.out.println("actualPhone = " + actualPhone);
 
-        //get information from database
-        //create the connection to db
-        DBUtils.createConnection();
 
         String query="select concat(first_name,' ',last_name) as \"full_name\", e.email,p.phone \n" +
                 "from orocrm_contact c join orocrm_contact_email e\n" +
@@ -96,13 +93,13 @@ public class ContactsStepDefs {
         System.out.println("expectedEmail = " + expectedEmail);
         System.out.println("expectedPhone = " + expectedPhone);
 
+
         //assertion
         Assert.assertEquals(expectedFullName,actualFullName);
         Assert.assertEquals(expectedEmail,actualEmail);
         Assert.assertEquals(expectedPhone,actualPhone);
 
-        //close the connection
-        DBUtils.destroy();
+
 
         BrowserUtils.waitFor(1);
     }

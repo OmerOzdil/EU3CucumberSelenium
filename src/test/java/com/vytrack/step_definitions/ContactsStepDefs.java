@@ -57,7 +57,7 @@ public class ContactsStepDefs {
     @When("the user clicks the {string} from contacts")
     public void the_user_clicks_the_from_contacts(String email) {
 
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(4);
         ContactsPage contactsPage = new ContactsPage();
         contactsPage.getContactEmail(email).click();
 
@@ -94,7 +94,46 @@ public class ContactsStepDefs {
         System.out.println("expectedPhone = " + expectedPhone);
 
 
-        //assertion
+        //assertion, compare UI against database
+        Assert.assertEquals(expectedFullName,actualFullName);
+        Assert.assertEquals(expectedEmail,actualEmail);
+        Assert.assertEquals(expectedPhone,actualPhone);
+
+
+
+        BrowserUtils.waitFor(1);
+    }
+
+    @Then("the information for {string} should be same with database")
+    public void the_information_for_should_be_same_with_database(String email) {
+        BrowserUtils.waitFor(3);
+        //get information from UI
+        ContactInfoPage contactInfoPage = new ContactInfoPage();
+        String actualFullName = contactInfoPage.contactFullName.getText();
+        String actualEmail = contactInfoPage.email.getText();
+        String actualPhone = contactInfoPage.phone.getText();
+
+        System.out.println("actualFullName = " + actualFullName);
+        System.out.println("actualEmail = " + actualEmail);
+        System.out.println("actualPhone = " + actualPhone);
+
+
+        String query="select concat(first_name,' ',last_name) as \"full_name\", e.email,p.phone \n" +
+                "from orocrm_contact c join orocrm_contact_email e\n" +
+                "on c.id=e.owner_id join orocrm_contact_phone p\n" +
+                "on e.owner_id=p.owner_id\n" +
+                "where e.email='"+email+"'";
+        Map<String, Object> rowMap = DBUtils.getRowMap(query);
+        String expectedFullName= (String) rowMap.get("full_name");
+        String expectedPhone = (String) rowMap.get("phone");
+        String expectedEmail = (String) rowMap.get("email");
+
+        System.out.println("expectedFullName = " + expectedFullName);
+        System.out.println("expectedEmail = " + expectedEmail);
+        System.out.println("expectedPhone = " + expectedPhone);
+
+
+        //assertion, compare UI against database
         Assert.assertEquals(expectedFullName,actualFullName);
         Assert.assertEquals(expectedEmail,actualEmail);
         Assert.assertEquals(expectedPhone,actualPhone);

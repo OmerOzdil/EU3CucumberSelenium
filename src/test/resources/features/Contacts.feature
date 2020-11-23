@@ -40,9 +40,16 @@ Feature: Contacts Page
       | storemanager85 | Stephan   | Haley     |
 
     @wip @db
-    Scenario: Contacts test with email
+    Scenario Outline: Contacts test with email
       Given  the user logged in as "salesmanager"
       And  the user navigates to "Customers" "Contacts"
-      When the user clicks the "mbrackstone9@example.com" from contacts
-      Then the information should be same with database
+      When the user clicks the "<email>" from contacts
+      Then the information for "<email>" should be same with database
+
+      Examples:
+      |email|
+      |mbrackstone9@example.com|
+      |mike.jorden@hotmail.com |
+
+
 
